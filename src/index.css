@@ -1,0 +1,58 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87);
+  background: linear-gradient(20deg, rgba(255, 255, 255, 0.562),hsla(241, 79%, 29%, 0.856));
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.content{
+  background-color:rgb(124, 124, 231);
+  height: 25rem;
+  width: 35rem;
+  border-radius: 37px;
+  border: solid rgb(108, 108, 202) 10px;
+  box-shadow: #000000 1px 2px 6px;
+}
+
+.textAreaTweet{
+  resize: none;
+  width: 90%;
+  height: 20%;
+  border: none;
+  border-radius: 10px;
+}
+button{
+  background-color:rgb(52, 52, 131);
+  padding: 10px 10px;
+  border: none;
+  border-radius: 7px;
+  margin: 8px;
+  box-shadow: #000000 1px 3px;
+  color: #ffffff;
+  margin-bottom:7rem;
+}
+button:hover{
+  background-color:rgb(48, 48, 90);
+  transform: translateY(1px);
+}
+
+.counter{
+  left: 72rem;
+  position:absolute;
+  bottom:18rem;
+
+}
+.title{
+  margin-top: 5vh;
+  margin-left:-1vh;
+}
