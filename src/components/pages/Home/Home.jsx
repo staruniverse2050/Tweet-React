@@ -8,6 +8,7 @@ export const Home = () => {
   const TextArea = useRef(null);
   const [showArchived, setShowArchived] = useState(false);
   const [publishedText, setPublishedText] = useState("");
+  
 
   useEffect(() => {
     const archivedTweetsFromStorage = localStorage.getItem("archivedTweets");
@@ -77,10 +78,12 @@ export const Home = () => {
         <button onClick={() => setShowArchived(true)} className="showArchive">
           Mostrar Archivos
         </button>
-        <p className="counter">{counter}</p>
-        <p className="Response">{publishedText}</p>
+        <p className={`counter ${counter > 20 ? 'green' : 'red'}`}>{counter}</p>
+        <span className="tweetspublic">Su tweet:
+        {publishedText}</span>
+        <p className="Response">Aquí se verán sus tweets archivados:</p>
         {showArchived && (
-          <div className="archivedTweets" placeholder="Aquí verá sus tweets archivados">
+          <div className="archivedTweets">
             {archivedTweets.map((tweet, index) => (
               <p key={index}>{tweet}</p>
             ))}
