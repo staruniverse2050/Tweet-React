@@ -1,19 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
-import '../../../index.css'
+import "../../../index.css";
 
 export const Home = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [archivedTweets, setArchivedTweets] = useState([]);
   const [textLimitReached, setTextLimitReached] = useState();
   const TextArea = useRef(null);
   const [showArchived, setShowArchived] = useState(false);
-  const [publishedText, setPublishedText] = useState('');
+  const [publishedText, setPublishedText] = useState("");
 
   useEffect(() => {
     const archivedTweetsFromStorage = localStorage.getItem("archivedTweets");
     if (archivedTweetsFromStorage) {
       setArchivedTweets(JSON.parse(archivedTweetsFromStorage));
     }
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   useEffect(() => {
@@ -28,20 +34,24 @@ export const Home = () => {
     } else {
       setTextLimitReached(false);
     }
-  }
+  };
 
   const handleArchive = () => {
-    if (text !== '') {
+    if (text !== "") {
       setArchivedTweets([...archivedTweets, text]);
-      setText('');
-      setPublishedText('');
+      setText("");
+      setPublishedText("");
     }
-  }
+  };
 
   const handlePublish = () => {
     setPublishedText(text);
     setShowArchived(false);
-  }
+  };
+
+  const handleBeforeUnload = () => {
+    localStorage.clear();
+  };
 
   const counter = 255 - text.length;
 
@@ -54,14 +64,20 @@ export const Home = () => {
           placeholder="Comience a escribir"
           className="textAreaTweet"
           disabled={textLimitReached}
-          maxLength={255} 
-          onInput ={handleText}
+          maxLength={255}
+          onInput={handleText}
           value={text}
         ></textarea>
-        <button onClick={handlePublish} className="public">Publicar</button>
-        <button onClick={handleArchive} className="archived">Archivar</button>
-        <button onClick={() => setShowArchived(true)} className="showArchive">Mostrar Archivos</button>
-        <p className='counter'>{counter}</p>
+        <button onClick={handlePublish} className="public">
+          Publicar
+        </button>
+        <button onClick={handleArchive} className="archived">
+          Archivar
+        </button>
+        <button onClick={() => setShowArchived(true)} className="showArchive">
+          Mostrar Archivos
+        </button>
+        <p className="counter">{counter}</p>
         <p className="Response">{publishedText}</p>
         {showArchived && (
           <div className="archivedTweets" placeholder="Aquí verá sus tweets archivados">
@@ -73,4 +89,4 @@ export const Home = () => {
       </div>
     </>
   );
-}
+};
