@@ -7,6 +7,18 @@ export const Home = () => {
   const [textLimitReached, setTextLimitReached] = useState();
   const TextArea = useRef(null);
   const [showArchived, setShowArchived] = useState(false);
+  const [publishedText, setPublishedText] = useState('');
+
+  useEffect(() => {
+    const archivedTweetsFromStorage = localStorage.getItem("archivedTweets");
+    if (archivedTweetsFromStorage) {
+      setArchivedTweets(JSON.parse(archivedTweetsFromStorage));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("archivedTweets", JSON.stringify(archivedTweets));
+  }, [archivedTweets]);
 
   const handleText = () => {
     const currentValue = TextArea.current.value;
@@ -20,35 +32,37 @@ export const Home = () => {
 
   const handleArchive = () => {
     if (text !== '') {
-      setArchivedTweets([archivedTweets, text]);
+      setArchivedTweets([...archivedTweets, text]);
       setText('');
+      setPublishedText('');
     }
   }
+
   const handlePublish = () => {
     setPublishedText(text);
-    setText('');
-    setCounter(255);
+    setShowArchived(false);
   }
 
-const counter = 255 - text.length;
+  const counter = 255 - text.length;
+
   return (
     <>
       <div className="content">
         <h2 className="title">Publique su tweet</h2>
         <textarea
-  ref={TextArea}
-  placeholder="Comience a escribir"
-  className="textAreaTweet"
-  disabled={textLimitReached}
-  maxLength={255} 
-  onInput ={handleText}
-></textarea>
-        <p className="Response">{text}</p>
+          ref={TextArea}
+          placeholder="Comience a escribir"
+          className="textAreaTweet"
+          disabled={textLimitReached}
+          maxLength={255} 
+          onInput ={handleText}
+          value={text}
+        ></textarea>
         <button onClick={handlePublish} className="public">Publicar</button>
         <button onClick={handleArchive} className="archived">Archivar</button>
         <button onClick={() => setShowArchived(true)} className="showArchive">Mostrar Archivos</button>
         <p className='counter'>{counter}</p>
-        <span className="tweetsArchived">Aquí verá sus tweets archivados</span>
+        <p className="Response">{publishedText}</p>
         {showArchived && (
           <div className="archivedTweets" placeholder="Aquí verá sus tweets archivados">
             {archivedTweets.map((tweet, index) => (
