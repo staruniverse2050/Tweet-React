@@ -5,7 +5,7 @@ export const Home = () => {
   const [text, setText] = useState("");
   const [archivedTweets, setArchivedTweets] = useState([]);
   const [textLimitReached, setTextLimitReached] = useState();
-  const TextArea = useRef(null);
+  const textArea = useRef(null);
   const [showArchived, setShowArchived] = useState(false);
   const [publishedText, setPublishedText] = useState("");
   
@@ -16,10 +16,10 @@ export const Home = () => {
       setArchivedTweets(JSON.parse(archivedTweetsFromStorage));
     }
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("beforeunload", updateLocalStorage);
 
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("beforeunload", updateLocalStorage);
     };
   }, []);
 
@@ -28,9 +28,9 @@ export const Home = () => {
   }, [archivedTweets]);
 
   const handleText = () => {
-    const currentValue = TextArea.current.value;
-    setText(currentValue);
-    if (currentValue.length > 255) {
+    const textareaValue = textArea.current.value;
+    setText(textareaValue);
+    if (textareaValue.length > 255) {
       setTextLimitReached(true);
     } else {
       setTextLimitReached(false);
@@ -50,7 +50,7 @@ export const Home = () => {
     setShowArchived(false);
   };
 
-  const handleBeforeUnload = () => {
+  const updateLocalStorage = () => {
     localStorage.clear();
   };
 
@@ -61,7 +61,7 @@ export const Home = () => {
       <div className="content">
         <h2 className="title">Publique su tweet</h2>
         <textarea
-          ref={TextArea}
+          ref={textArea}
           placeholder="Comience a escribir"
           className="textAreaTweet"
           disabled={textLimitReached}
@@ -69,7 +69,7 @@ export const Home = () => {
           onInput={handleText}
           value={text}
         ></textarea>
-        <button onClick={handlePublish} className="public">
+        <button onClick={handlePublish} className="post">
           Publicar
         </button>
         <button onClick={handleArchive} className="archived">
@@ -79,7 +79,7 @@ export const Home = () => {
           Mostrar Archivos
         </button>
         <p className={`counter ${counter > 20 ? 'green' : 'red'}`}>{counter}</p>
-        <span className="tweetspublic">Su tweet:
+        <span className="publishedtweets">Tweet:
         {publishedText}</span>
         <p className="Response">Aquí se verán sus tweets archivados:</p>
         {showArchived && (

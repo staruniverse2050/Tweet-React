@@ -15,6 +15,7 @@ body {
   min-height: 100vh;
 }
 
+/* Cuerpo del tweet */
 .content{
   background-color:rgb(124, 124, 231);
   height: 25rem;
@@ -27,6 +28,7 @@ body {
 
 }
 
+/* textArea del tweet */
 .textAreaTweet{
   resize: none;
   width: 90%;
@@ -34,6 +36,8 @@ body {
   border: none;
   border-radius: 10px;
 }
+
+/* Botones */
 button{
   background-color:rgb(52, 52, 131);
   padding: 10px 10px;
@@ -44,17 +48,22 @@ button{
   color: #ffffff;
   margin-bottom:7rem;
 }
+
+/* Animación al pasar el mouse por el botón*/
 button:hover{
   background-color:rgb(48, 48, 90);
   transform: translateY(1px);
 }
 
+/* Contador */
 .counter{
-  left: 73rem;
+  left: 53rem;
   position:absolute;
-  bottom:34rem;
+  bottom:25rem;
 
 }
+
+/* Titulo */
 .title{
   margin-top: 6vh;
   margin-left:-1vh;
@@ -62,6 +71,7 @@ button:hover{
   bottom: 2rem;
   font-size:30px;
 }
+
 .Response{
   word-wrap: break-word;
   justify-content: center;
@@ -75,7 +85,10 @@ button:hover{
   border-radius: 10px;
   background-color:rgb(124, 124, 231);
   margin-top: 1rem;
+  
 }
+
+/* Colores contador */
 .green {
   color: rgb(38, 124, 38);
   font-weight: bold;
@@ -85,13 +98,19 @@ button:hover{
   color: rgb(211, 13, 13);
   font-weight: bold;
 }
-.tweetspublic{
+
+
+.publishedtweets{
   word-wrap: break-word;
   position: absolute;
   margin-top: 5rem;
-  left: 49rem;
+  left: 31rem;
   width: 350px;
+  bottom: 230px;
+  text-align: justify;
+  
 }
+
 .publishedText{
   word-wrap: break-word;
   position: absolute;
