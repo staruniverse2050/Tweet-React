@@ -16,6 +16,9 @@ body {
   padding: 20px;
 }
 
+::selection{
+  background-color: rgba(149, 149, 151, 0.577);
+}
 /* Cuerpo del tweet */
 .content{
   background-color:rgb(124, 124, 231);
