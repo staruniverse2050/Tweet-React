@@ -18,6 +18,8 @@ export const Home = () => {
       setTextLimitReached(false);
     }
   };
+  
+  const counter = 255 - text.length;
 
   
   const publicTweets = () => {
@@ -33,9 +35,9 @@ export const Home = () => {
     }
   };
 
-  const cleanLocalStorage = () => {
-    localStorage.clear();
-  };
+  useEffect(() => {
+    localStorage.setItem("archivedTweets", JSON.stringify(archivedTweets));
+  }, [archivedTweets]);
 
   useEffect(() => {
     const archivedTweetsFromStorage = localStorage.getItem("archivedTweets");
@@ -50,11 +52,10 @@ export const Home = () => {
     };
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("archivedTweets", JSON.stringify(archivedTweets));
-  }, [archivedTweets]);
+  const cleanLocalStorage = () => {
+    localStorage.clear();
+  };
 
-  const counter = 255 - text.length;
 
   return (
     <>
