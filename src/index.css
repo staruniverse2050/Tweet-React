@@ -16,9 +16,15 @@ body {
   padding: 20px;
 }
 
-::selection{
-  background-color: rgba(149, 149, 151, 0.577);
+/* Titulo */
+.title{
+  margin-top: 7vh;
+  margin-left:-1vh;
+  position: relative;
+  bottom: 2rem;
+  font-size:30px;
 }
+
 /* Cuerpo del tweet */
 .content{
   background-color:rgb(124, 124, 231);
@@ -33,6 +39,10 @@ body {
   
 }
 
+::selection{
+  background-color: rgba(149, 149, 151, 0.577);
+}
+
 /* textArea del tweet */
 .textAreaTweet{
   resize: none;
@@ -40,6 +50,34 @@ body {
   height: 20%;
   border: none;
   border-radius: 10px;
+}
+
+/* Contador */
+.counter{
+  left: 53rem;
+  position:absolute;
+  bottom:25rem;
+
+}
+
+/* Colores contador */
+.green {
+  color: rgb(38, 124, 38);
+  font-weight: bold;
+}
+
+.red {
+  color: rgb(211, 13, 13);
+  font-weight: bold;
+}
+
+.Response{
+  word-wrap: break-word;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 7rem;
+  
 }
 
 /* Botones */
@@ -60,33 +98,6 @@ button:hover{
   transform: translateY(1px);
 }
 
-/* Contador */
-.counter{
-  left: 53rem;
-  position:absolute;
-  bottom:25rem;
-
-}
-
-/* Titulo */
-.title{
-  margin-top: 7vh;
-  margin-left:-1vh;
-  position: relative;
-  bottom: 2rem;
-  font-size:30px;
-}
-
-.Response{
-  word-wrap: break-word;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  margin-top: 7rem;
-  
-}
-
-
 .archivedTweets{
   word-wrap: break-word;
   border: solid rgb(108, 108, 202) 5px;
@@ -95,27 +106,13 @@ button:hover{
   margin-top: 1rem;  
 }
 
-footer{
-  padding: 20px;
+.publishedText{
+  word-wrap: break-word;
+  position: absolute;
+  margin-top: 5rem;
+  left: 49rem;
+  width: 350px;
 }
-
-
-
-.savedTweetSelectionButton{
-  margin-bottom: 1rem;  
-}
-
-/* Colores contador */
-.green {
-  color: rgb(38, 124, 38);
-  font-weight: bold;
-}
-
-.red {
-  color: rgb(211, 13, 13);
-  font-weight: bold;
-}
-
 
 .publishedtweets{
   word-wrap: break-word;
@@ -125,17 +122,17 @@ footer{
   width: 350px;
   bottom: 170px;
   text-align: justify;
-  
 }
 
-.publishedText{
-  word-wrap: break-word;
-  position: absolute;
-  margin-top: 5rem;
-  left: 49rem;
-  width: 350px;
-  
+.savedTweetSelectionButton{
+  margin-bottom: 1rem;  
 }
+
+footer{
+  padding: 20px;
+}
+
+
 /* RESET DE CSS */
 /* http://meyerweb.com/eric/tools/css/reset/ */
 /* v1.0 | 20080212 */
