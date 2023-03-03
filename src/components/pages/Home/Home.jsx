@@ -4,11 +4,38 @@ import "../../../index.css";
 export const Home = () => {
   const [text, setText] = useState("");
   const [archivedTweets, setArchivedTweets] = useState([]);
-  const [textLimitReached, setTextLimitReached] = useState();
+  const [textLimitReached, setTextLimitReached] = useState(false);
   const textArea = useRef(null);
   const [showArchived, setShowArchived] = useState(false);
   const [publishedText, setPublishedText] = useState("");
+
+  const textOfTextarea = () => {
+    const textareaValue = textArea.current.value;
+    setText(textareaValue);
+    if (textareaValue.length > 255) {
+      setTextLimitReached(true);
+    } else {
+      setTextLimitReached(false);
+    }
+  };
+
   
+  const publicTweets = () => {
+    setPublishedText(text);
+    setShowArchived(false);
+  };
+
+  const archived = () => {
+    if (text !== "") {
+      setArchivedTweets([...archivedTweets, text]);
+      setText("");
+      setPublishedText("");
+    }
+  };
+
+  const cleanLocalStorage = () => {
+    localStorage.clear();
+  };
 
   useEffect(() => {
     const archivedTweetsFromStorage = localStorage.getItem("archivedTweets");
@@ -26,33 +53,6 @@ export const Home = () => {
   useEffect(() => {
     localStorage.setItem("archivedTweets", JSON.stringify(archivedTweets));
   }, [archivedTweets]);
-
-  const textOfTextarea = () => {
-    const textareaValue = textArea.current.value;
-    setText(textareaValue);
-    if (textareaValue.length > 255) {
-      setTextLimitReached(true);
-    } else {
-      setTextLimitReached(false);
-    }
-  };
-
-  const archived = () => {
-    if (text !== "") {
-      setArchivedTweets([...archivedTweets, text]);
-      setText("");
-      setPublishedText("");
-    }
-  };
-
-  const publicTweets = () => {
-    setPublishedText(text);
-    setShowArchived(false);
-  };
-
-  const cleanLocalStorage = () => {
-    localStorage.clear();
-  };
 
   const counter = 255 - text.length;
 
@@ -79,13 +79,16 @@ export const Home = () => {
           Mostrar Archivos
         </button>
         <p className={`counter ${counter > 20 ? 'green' : 'red'}`}>{counter}</p>
-        <span className="publishedtweets">Tweet:
-        {publishedText}</span>
+        <span className="publishedtweets">Tweet: {publishedText}</span>
         <p className="Response">Aquí se verán sus tweets archivados:</p>
         {showArchived && (
           <div className="archivedTweets">
             {archivedTweets.map((tweet, index) => (
-              <p key={index}>{tweet}</p>
+              <div key={index}>
+                <button className="savedTweetSelectionButton" onClick={() => setPublishedText(tweet)}>
+                  Tweet {index + 1}
+                </button>
+              </div>
             ))}
           </div>
         )}
