@@ -16,10 +16,10 @@ export const Home = () => {
       setArchivedTweets(JSON.parse(archivedTweetsFromStorage));
     }
 
-    window.addEventListener("beforeunload", updateLocalStorage);
+    window.addEventListener("beforeunload", cleanLocalStorage);
 
     return () => {
-      window.removeEventListener("beforeunload", updateLocalStorage);
+      window.removeEventListener("beforeunload", cleanLocalStorage);
     };
   }, []);
 
@@ -27,7 +27,7 @@ export const Home = () => {
     localStorage.setItem("archivedTweets", JSON.stringify(archivedTweets));
   }, [archivedTweets]);
 
-  const handleText = () => {
+  const textOfTextarea = () => {
     const textareaValue = textArea.current.value;
     setText(textareaValue);
     if (textareaValue.length > 255) {
@@ -37,7 +37,7 @@ export const Home = () => {
     }
   };
 
-  const handleArchive = () => {
+  const archived = () => {
     if (text !== "") {
       setArchivedTweets([...archivedTweets, text]);
       setText("");
@@ -45,12 +45,12 @@ export const Home = () => {
     }
   };
 
-  const handlePublish = () => {
+  const publicTweets = () => {
     setPublishedText(text);
     setShowArchived(false);
   };
 
-  const updateLocalStorage = () => {
+  const cleanLocalStorage = () => {
     localStorage.clear();
   };
 
@@ -66,13 +66,13 @@ export const Home = () => {
           className="textAreaTweet"
           disabled={textLimitReached}
           maxLength={255}
-          onInput={handleText}
+          onInput={textOfTextarea}
           value={text}
         ></textarea>
-        <button onClick={handlePublish} className="post">
+        <button onClick={publicTweets} className="post">
           Publicar
         </button>
-        <button onClick={handleArchive} className="archived">
+        <button onClick={archived} className="archived">
           Archivar
         </button>
         <button onClick={() => setShowArchived(true)} className="showArchive">
