@@ -2,8 +2,8 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.87);
-  background: linear-gradient(20deg, rgba(255, 255, 255, 0.562),hsla(241, 79%, 29%, 0.856));
+  color: #000000de;
+  background: linear-gradient(90deg, rgba(155, 152, 235, 0.662), hsla(241, 78%, 29%, 0.428),  rgba(155, 152, 235, 0.662));
 }
 
 body {
@@ -13,6 +13,7 @@ body {
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
+  padding: 20px;
 }
 
 /* Cuerpo del tweet */
@@ -25,7 +26,8 @@ body {
   box-shadow: #000000 1px 2px 6px;
   margin-bottom: 5rem;
   word-wrap: break-word;
-
+  box-sizing: border-box;
+  
 }
 
 /* textArea del tweet */
@@ -65,7 +67,7 @@ button:hover{
 
 /* Titulo */
 .title{
-  margin-top: 6vh;
+  margin-top: 7vh;
   margin-left:-1vh;
   position: relative;
   bottom: 2rem;
@@ -78,17 +80,26 @@ button:hover{
   align-items: center;
   display: flex;
   margin-top: 7rem;
+  
 }
+
+
 .archivedTweets{
   word-wrap: break-word;
   border: solid rgb(108, 108, 202) 5px;
   border-radius: 10px;
   background-color:rgb(124, 124, 231);
-  margin-top: 1rem;
-  
+  margin-top: 1rem;  
 }
+
+footer{
+  padding: 20px;
+}
+
+
+
 .savedTweetSelectionButton{
-  margin-bottom: 1rem;
+  margin-bottom: 1rem;  
 }
 
 /* Colores contador */
@@ -120,6 +131,7 @@ button:hover{
   margin-top: 5rem;
   left: 49rem;
   width: 350px;
+  
 }
 /* RESET DE CSS */
 /* http://meyerweb.com/eric/tools/css/reset/ */

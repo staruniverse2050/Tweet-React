@@ -92,6 +92,7 @@ export const Home = () => {
             ))}
           </div>
         )}
+        <footer></footer>
       </div>
     </>
   );
